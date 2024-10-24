@@ -67,6 +67,7 @@
 
         let headingAPI = (typeof event.webkitCompassHeading !== 'undefined') ? event.webkitCompassHeading : event.alpha;
         console.log('heading', headingAPI)
+        speed.textContent = headingAPI
       })
     }
   </script>
