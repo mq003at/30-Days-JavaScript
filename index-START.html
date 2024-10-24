@@ -88,6 +88,9 @@
     let prevPos = null;
     let prevTimeStamp = null;
 
+    const arrow = document.querySelector('.arrow');
+    const speed = document.querySelector('.speed-value');
+
     // Distance function
     function calculateDistance(lat1, lon1, lat2, lon2) {
       const toRadians = (degrees) => degrees * Math.PI / 180;
@@ -133,7 +136,7 @@
           const timeDifference = (currentTime - prevTimeStamp) / 1000;
           if (timeDifference >= 1) { // Ensure that updates happen at least every second
             const speed = calculateSpeed(currPos, prevPos, timeDifference / 3600); // Convert time to hours
-            document.getElementsByClassName('speed').textContent = speed.toFixed(2); // Update speed in km/h
+            speed.textContent = speed.toFixed(2); // Update speed in km/h
           }
 
         }
