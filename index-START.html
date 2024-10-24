@@ -85,90 +85,16 @@
     /*Compass: https://thenounproject.com/search/?q=compass&i=592352*/
   </style>
   <script>
-    let prevPos = null;
-    let prevTimeStamp = null;
-
     const arrow = document.querySelector('.arrow');
     const speed = document.querySelector('.speed-value');
 
-    // Distance function
-    function calculateDistance(lat1, lon1, lat2, lon2) {
-      const toRadians = (degrees) => degrees * Math.PI / 180;
-      const R = 6371e3; // Earth's radius in meters
-
-      const φ1 = toRadians(lat1);
-      const φ2 = toRadians(lat2);
-      const Δφ = toRadians(lat2 - lat1);
-      const Δλ = toRadians(lon2 - lon1);
-
-      const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-        Math.cos(φ1) * Math.cos(φ2) *
-        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-      return R * c; // distance in meters
-    }
-
-    // Speed function
-    function calculateSpeed(currentPosition, previousPosition, timeDifference) {
-      const { latitude: lat1, longitude: lon1 } = previousPosition.coords;
-      const { latitude: lat2, longitude: lon2 } = currentPosition.coords;
-
-      const distance = calculateDistance(lat1, lon1, lat2, lon2); // in meters
-      const speed = (distance / timeDifference) * 3600; // speed in km/h (distance in meters, time in hours)
-
-      return speed;
-    }
-
-    function isIOS() {
-      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    }
-    function isAndroid() {
-      return /Android/.test(navigator.userAgent);
-    }
-
-    // Main function 
-    if (navigator.geolocation) {
-      navigator.geolocation.watchPosition((currPos) => {
-        const currentTime = new Date().getTime();
-
-        if (prevPos && prevTimeStamp) {
-          const timeDifference = (currentTime - prevTimeStamp) / 1000;
-          if (timeDifference >= 1) { // Ensure that updates happen at least every second
-            const speed = calculateSpeed(currPos, prevPos, timeDifference / 3600); // Convert time to hours
-            speed.textContent = speed.toFixed(2); // Update speed in km/h
-          }
-
-        }
-
-        prevPos = currPos;
-        prevTimeStamp = currentTime;
-      }, err => console.log('err', err), { enableHighAccuracy: true })
-    }
-
-    // heading section
-    let mobileDevice = null;
-    if (isIOS()) mobileDevice = 'ios';
-    if (isAndroid()) mobileDevice = 'android';
-    console.log('mobile', mobileDevice)
-
-    function handleDeviceOrientation(event) {
-      let heading;
-
-      if (mobileDevice === 'ios' && event.webkitCompassHeading !== undefined) {
-        heading = event.webkitCompassHeading;
-      } else if (mobileDevice !== 'ios' && event.alpha !== undefined) {
-        heading = event.alpha; 
-      }
-
-      if (heading !== undefined) {
-        document.getElementById('heading').textContent = Math.round(heading); 
-      } else {
-        document.getElementById('heading').textContent = 'N/A';
-      }
-    }
-
-
+    navigator.geolocation.watchPosition((data) => {
+      console.log(data);
+      speed.textContent = data.coords.speed;
+      arrow.style.transform = `rotate(${data.coords.heading}deg)`;
+    }, (err) => {
+      console.error(err);
+    });
   </script>
 </body>
 
