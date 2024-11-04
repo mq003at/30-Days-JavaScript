@@ -1,79 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Sort Without Articles</title>
-    <link rel="icon" href="https://fav.farm/🔥" />
-  </head>
-  <body>
-    <style>
-      body {
-        margin: 0;
-        font-family: sans-serif;
-        background: url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000");
-        background-size: cover;
-        display: flex;
-        align-items: center;
-        min-height: 100vh;
-      }
 
-      #bands {
-        list-style: inside square;
-        font-size: 20px;
-        background: white;
-        width: 500px;
-        margin: auto;
-        padding: 0;
-        box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
-      }
+<head>
+  <meta charset="UTF-8" />
+  <title>Sort Without Articles</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
 
-      #bands li {
-        border-bottom: 1px solid #efefef;
-        padding: 20px;
-      }
+<body>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000");
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-      #bands li:last-child {
-        border-bottom: 0;
-      }
+    #bands {
+      list-style: inside square;
+      font-size: 20px;
+      background: white;
+      width: 500px;
+      margin: auto;
+      padding: 0;
+      box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+    }
 
-      a {
-        color: #ffc600;
-        text-decoration: none;
-      }
-    </style>
+    #bands li {
+      border-bottom: 1px solid #efefef;
+      padding: 20px;
+    }
 
-    <ul id="bands"></ul>
+    #bands li:last-child {
+      border-bottom: 0;
+    }
 
-    <script>
-      const bands = [
-        "The Plot in You",
-        "The Devil Wears Prada",
-        "Pierce the Veil",
-        "Norma Jean",
-        "The Bled",
-        "Say Anything",
-        "The Midway State",
-        "We Came as Romans",
-        "Counterparts",
-        "Oh, Sleeper",
-        "A Skylit Drive",
-        "Anywhere But Here",
-        "An Old Dog",
-      ];
+    a {
+      color: #ffc600;
+      text-decoration: none;
+    }
+  </style>
 
-      function strip(bandName) {
-        return bandName.replace(/^(a |an |the )/i, "").trim();
-      }
+  <ul id="bands"></ul>
 
-      const sortedBands = bands.sort((a, b) =>
-        strip(a).localeCompare(strip(b))
-      );
+  <script>
+    function initialize() {
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button => {
+        button.addEventListener('click', event => {
+          const currentDiv = button.parentNode;
+          const currentSpan = currentDiv.querySelector('span');
+          let currentSpanText = currentSpan.textContent;
 
-      document.querySelector("#bands").innerHTML = sortedBands
-        .map((band) => `<li>${band}</li>`)
-        .join("");
+          if (button.classList.contains('upButton')) {
+            const previousDiv = currentDiv.previousElementSibling;
+            if (previousDiv) {
+              const previousSpan = previousDiv.querySelector('span');
+              let temp = previousSpan.textContent;
+              previousSpan.textContent = currentSpanText;
+              currentSpan.textContent = temp; // Update the current div's span text
+            }
+          }
 
-      console.log("sorted", sortedBands);
-    </script>
-  </body>
+          else if (button.classList.contains('downButton')) {
+            const nextDiv = currentDiv.nextElementSibling;
+            if (nextDiv) {
+              const nextSpan = nextDiv.querySelector('span');
+              let temp = nextSpan.textContent;
+              nextSpan.textContent = currentSpanText;
+              currentSpan.textContent = temp; // Update the current div's span text
+            }
+          }
+        });
+      });
+    }
+
+
+    document.body.innerHTML = `
+<div>
+    <span>Prepare presentation</span>
+    <button class="downButton" type="button">&darr;</button>
+</div>
+<div>
+    <span>Read emails</span>
+    <button class="downButton" type="button">&darr;</button>
+    <button class="upButton" type="button">&uarr;</button></div>
+<div>
+    <span>Monthly report</span>
+    <button class="upButton" type="button">&uarr;</button>
+</div>`;
+
+    initialize();
+
+    document.querySelectorAll("button")[0].click();
+    document.querySelectorAll("button")[3].click();
+    document.querySelectorAll("button")[1].click();
+
+    console.log(document.body.innerHTML);
+  </script>
+</body>
+
 </html>
