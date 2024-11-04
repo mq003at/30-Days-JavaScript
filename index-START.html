@@ -66,17 +66,18 @@
           audio.play();
           div.classList.add("playing");
         }
-
       });
 
       // Handle Transition thereafter
-      const keys = document.querySelectorAll('.key');
+      const keys = document.querySelectorAll(".key");
       function removeTransition(e) {
-        console.log(this)
-        if (e.propertyName === 'transform') this.classList.remove('playing');
+        console.log(this);
+        if (e.propertyName === "transform") this.classList.remove("playing");
       }
-    
-      keys.forEach(key => key.addEventListener('transitionend', removeTransition))
+
+      keys.forEach((key) =>
+        key.addEventListener("transitionend", removeTransition)
+      );
     </script>
   </body>
 </html>
