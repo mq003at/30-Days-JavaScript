@@ -8,5 +8,6 @@ In here, I just want to note that what Wesbos did with parseFloat() is very risk
 At the end, instead of using calculation to get the hour and minute, I use Date() instead for faster. Both is good so you guys can decide what to use in your programs.
 
 Result:
+
 ![image](https://github.com/user-attachments/assets/f0a0206e-3747-4cdf-bb54-9313ba80a0ea)
 
