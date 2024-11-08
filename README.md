@@ -11,4 +11,3 @@ Result:
 
 ![image](https://github.com/user-attachments/assets/277753ea-8349-46e1-b6d9-4512ae3be54a)
 ![image](https://github.com/user-attachments/assets/83843691-db36-47f8-8879-2d835e55b1f0)
-![image](https://github.com/user-attachments/assets/5bab2413-d84f-4240-b936-9ffc799baf3b)
