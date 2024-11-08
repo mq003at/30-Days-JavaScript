@@ -1,5 +1,5 @@
 
-# 🎯 Project 10: HTML Video 🥁
+# 🎯 Project 11: HTML Video 🥁
 
 What we want for our video player is just some simple functionalities: play, pause, skip, volume and playback controls. Now, some of you may feel it is hard because for some tasks, like volume or playback, you do not know how to implement the functionalities. 
 
