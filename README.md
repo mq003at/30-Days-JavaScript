@@ -6,4 +6,5 @@ Today, I built a virtual drum kit! It's a simple yet fun project where pressing 
 Follow along for daily updates, and feel free to join me in this coding adventure! Let’s make these 30 days count! 💻💪
 
 Result:
+
 ![image](https://github.com/user-attachments/assets/ff46a1eb-d01a-47e1-9d61-dd33a0e62e61)
