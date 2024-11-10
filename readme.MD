@@ -9,3 +9,5 @@ In order to achieve the goal, we will need to ultilize SpeechSynthesisUtterance,
 
 But first, let us get the voice library. Since we only use English here, we can extract voice lang includes the string 'en'. Then, when the user chooses the voice pack they want, we can assign it to the Utterance. After that, we can get the options (rate, pitch, etc.) and assign it into specific property as well. At the end, we call speechSynthesis.speak(UtteranceObject) to make it read outloud for us.
 
+![12](https://github.com/user-attachments/assets/6f9c7230-1e93-4e37-b135-e2141123aed6)
+![2](https://github.com/user-attachments/assets/240cc181-2e0c-4fa2-bd31-37233f3a7c55)
