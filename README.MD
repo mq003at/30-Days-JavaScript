@@ -4,3 +4,5 @@ Today we are in again for another advanced design technique. Our problem is to m
 
 So, the plan to do this is simple. We just want another dynamic div that will change its properties depending on the element we are hovering on. First we can get our current element using function .getBoundingClientRect() and we can use .setProperty() to change the CSS properties from JS.
 
+![image](https://github.com/user-attachments/assets/023b68dc-54c4-45c5-b740-6bb505da1e17)
+![image](https://github.com/user-attachments/assets/953a393b-366d-4ec0-ae99-e88449199a86)
